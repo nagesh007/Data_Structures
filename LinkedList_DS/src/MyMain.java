@@ -18,9 +18,9 @@ public class MyMain {
 					+ "3 : Insert after an element\n"
 					+ "4 : Display\n"
 					+ "5 : Reverse\n"
-					+ "6 : Remove fisrt element\n"
-					+ "7 : Remove last element\n"
-					+ "8 : Remove a particular element\n");
+					+ "6 : Delete fisrt element\n"
+					+ "7 : Delete last element\n"
+					+ "8 : Delete a particular element\n");
 			System.out.println("Please Enter your choice");
 			int choice= scanner.nextInt();
 			switch(choice)
@@ -49,6 +49,17 @@ public class MyMain {
 						
 				case 5: list.reverseWithoutCreatingNewList();
 						break;
+						
+				case 6: list.deleteAtTheBegining();
+						break;
+				
+				case 7: list.deleteAtTheEnd();
+						break;
+						
+				case 8: System.out.println("Please enter the number which u want to delete");
+		 		        int numberToBeDeleted=scanner.nextInt();
+		 		        list.deleteAParticularElement(numberToBeDeleted);
+		 		        break;
 						
 				default : System.out.println("\nThanks for using Linked List\n");
 						  scanner.close();
