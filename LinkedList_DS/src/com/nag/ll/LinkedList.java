@@ -34,13 +34,14 @@ public class LinkedList {
 		}
 		else
 		{
+			System.out.print("List items : ");
 			Node temp=first;
 			while(temp!=null)
 			{
-				System.out.println("\t"+temp.getData());
+				System.out.print("\t"+temp.getData()+" -> ");
 				temp=temp.getNext();
 			}
-			System.out.println("\n");
+			System.out.println("null\n");
 		}
 	}
 	
@@ -116,51 +117,40 @@ public class LinkedList {
 		else
 		{
 			
-			// if list is empty then creating an object is waste
 			Node obj=new Node (dataToBeInserted,null);
 			
-			
 			Node temp=first;
-			while(temp.getData()!=element)
+			while(temp!=null && temp.getData()!=element)
 			{
 				temp=temp.getNext();
 			}
 			
-			/*
-			 * Currently temp is exactly pointing to the required node
-			 * 
-			 * There are 2 scenarios
-			 * ------------------------
-			 *    
-			 *     - Required node (temp pointing one) might be the last node
-			 *     - Required node is not the last node
-			 */
 			
-			
-			
-			if(temp.getNext()==null)
+			if(temp==null)
 			{
-				//Scenario 1 : Required node is last node
-				temp.setNext(obj);
-				
-				
-				// this is not necessary, i am simply planning to remove unused references
-				obj=null;
+				// item not found , so i can't insert
+				System.out.println("Sorry, I was not able to find the reference element. Unable to insert new data ");
+				return;
 			}
-			else
-			{
-				// Scenario 2 
-				
-				
+			
+				/*
+				 * Currently "temp" is exactly pointing to the required node
+				 * 
+				 * There are 2 scenarios
+				 * ------------------------
+				 *    
+				 *     - Required node ("temp" pointing one) might be the last node
+				 *     - Required node might be somewhere in the middle
+				 *     
+				 *     Below code will work for both scenarios
+				 */
+			
+					
 				obj.setNext(temp.getNext());
 				temp.setNext(obj);
 				
 				// this is not necessary, i am simply planning to remove unused references
 				obj=null;
-				
-			}
-			
-			
 		}
 	}
 	
@@ -173,8 +163,12 @@ public class LinkedList {
 		{
 			// Empty List
 			System.out.println("List is empty, sorry I can't reverse");
+			
+			return;
+			
 		}
-		else if(first.getNext()==null)
+		
+		if(first.getNext()==null)
 		{
 			// If list size is 1 , There is nothing to reverse
 		}
@@ -183,38 +177,46 @@ public class LinkedList {
 			// Above condition tells that there are only 2 elements
 			
 			Node second=first.getNext();
-			
 			second.setNext(first);
 			first.setNext(null);
 			
 			first=second;
+			
 		}
 		else
 		{
 			
-			Node head=first.getNext();
-			Node temp=first;
-			Node prev=null;
+		   /*
+		    *  I will take 3 temporary references old, current and future
+		    *  I will play with current reference
+		    */
+		
+			Node old=null;
+			Node current=first;
+			Node future=first.getNext();
 			
-			while(head.getNext()!=null)
+			while(future.getNext()!=null)
 			{
-				temp.setNext(prev);
-				prev=temp;
-				temp=head;
-				head=head.getNext();
+				current.setNext(old);
+				
+				old=current;
+				current=future;
+				future=future.getNext();
 			}
 			
-			temp.setNext(prev);
-			head.setNext(temp);
+			current.setNext(old);
+			future.setNext(current);
 			
-			first=head;
+			// important step
+			first=future;
 			
 			// this is not necessary, i am simply planning to remove unused references
-			temp=null;
-			head=null;
-			prev=null;
+			old=null;
+			current=null;
+			future=null;
 			
 		}
+		System.out.println("Reversing is done...\n");
 	}
 	
 	
