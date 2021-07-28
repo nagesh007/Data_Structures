@@ -20,7 +20,8 @@ public class MyMain {
 					+ "5 : Reverse\n"
 					+ "6 : Delete fisrt element\n"
 					+ "7 : Delete last element\n"
-					+ "8 : Delete a particular element\n");
+					+ "8 : Delete a particular element\n"
+					+ "9 : Exit\n");
 			System.out.println("Please Enter your choice");
 			int choice= scanner.nextInt();
 			switch(choice)
@@ -60,7 +61,8 @@ public class MyMain {
 		 		        int numberToBeDeleted=scanner.nextInt();
 		 		        list.deleteAParticularElement(numberToBeDeleted);
 		 		        break;
-						
+					
+		 		
 				default : System.out.println("\nThanks for using Linked List\n");
 						  scanner.close();
 						  System.exit(0);

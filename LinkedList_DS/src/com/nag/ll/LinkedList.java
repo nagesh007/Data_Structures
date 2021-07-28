@@ -240,6 +240,8 @@ public class LinkedList {
 			// shift first to second node, 1st block(node) is left for garbage collector
 			first=temp;
 		}
+		
+		System.out.println("Node at the Begining was deleted\n");
 
 	}
 
@@ -273,6 +275,9 @@ public class LinkedList {
 
 			// last node is left to garbage collector
 		}
+		
+		System.out.println("Node at the end was deleted\n");
+		
 	}
 
 
@@ -284,17 +289,57 @@ public class LinkedList {
 			return;
 		}
 
-		// if there is o
+		// if there is only one element
 		if(first.getNext()==null)
 		{
+			
+			System.out.println("First Node value :"+first.getData());
+			System.out.println("To be deleted :"+numberToBeDeleted);
 			
 			if(first.getData()==numberToBeDeleted)
 			{
 				// Deleting : first will point to null and block(Node object) is left to Garbage Collector
 				first=null;
+				System.out.println(numberToBeDeleted+" number deleted\n");
 			}
 			else
 			{
+				System.out.println("Sorry, Element not found so unable to delete");
+			}
+		}
+		else
+		{
+			if(first.getData()==numberToBeDeleted)
+			{
+				first=first.getNext();
+				System.out.println(numberToBeDeleted+" number deleted\n");
+				return;
+			}
+			
+			
+			Node temp=first;
+			
+			while(temp.getNext()!=null && temp.getNext().getData()!=numberToBeDeleted)
+			{
+				temp=temp.getNext();
+			}
+			if(temp.getNext()==null)
+			{
+				System.out.println("Sorry, Element not found so unable to delete");
+			}
+			else
+			{
+				/*
+				 *  Now "temp" will be pointing to the previous node
+				 */
+				Node trash=temp.getNext();
+				temp.setNext(trash.getNext());
+				
+				// this is not necessary, i am simply planning to remove unused references
+				temp=null;
+				trash=null;
+				
+				System.out.println(numberToBeDeleted+" number deleted\n");
 				
 			}
 		}
