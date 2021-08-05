@@ -104,8 +104,82 @@ public class DoublyLinkedList {
 		else
 		{
 
+			Node temp=first;
+			while(temp!= null && temp.data!=key)
+			{
+				temp=temp.right;
+			}
+
+			if(temp==null)
+			{
+				System.out.println("Sorry, Reference element not found. Unable to insert");
+			}
+			else
+			{
+				Node block =new Node(data);
+				
+				/*
+				 * There are 2 scenarios
+				 * 
+				 * - "temp" might be pointing to the last node
+				 * - "temp" might be somewhere middle
+				 * 
+				 */
+				
+				if(temp==last)
+				{
+					temp.right=block;
+					block.left=temp;
+					
+					
+					// shift last reference
+					last=block;
+					
+				}
+				else
+				{
+					Node next=temp.right;
+					
+					block.right=next;
+					next.left=block;
+					
+					temp.right=block;
+					block.left=temp;
+					
+					// this is not necessary, i am simply planning to remove unused references
+					next=null;
+				}
+				
+				// this is not necessary, i am simply planning to remove unused references
+				block=null;
+			}
+		}
+	}
+
+
+	/**
+	 *  Reverse a doubly linked list
+	 */
+	public void reverse()
+	{
+		if(first==null)
+		{
+			// there is nothing to reverse
+			System.out.println("List is empty");
+		}
+		else
+		{
+
+			// Just swapping references
+			Node temp=last;
+			last=first;
+			first=temp;
+
+			// this is not necessary, i am simply planning to remove unused references
+			temp=null;
 
 		}
+
 	}
 
 

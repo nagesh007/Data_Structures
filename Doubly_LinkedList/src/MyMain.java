@@ -50,7 +50,7 @@ public class MyMain {
 						break;
 						
 				case 5: 
-//						list.reverseWithoutCreatingNewList();
+						list.reverse();
 						break;
 						
 				case 6:

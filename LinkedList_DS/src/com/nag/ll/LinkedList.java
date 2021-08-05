@@ -346,6 +346,21 @@ public class LinkedList {
 	}
 
 
+	
+	/**************** Some  APIs for testing **************/
+	
+	// Not accessible to end user
+	
+	protected int getFirstElement()
+	{
+		if(first==null)
+		{
+			return -1;
+		}
+		
+		return first.data;
+		
+	}
 
 
 }
